@@ -107,6 +107,15 @@ public function ismain($id){
         return redirect('markets');
 
     }
+    public function viewSubCat($id)
+    {
+        $categories = MarketCategory::where('catigory_id','=',$id)->get();
+        $arr = array('', '', '', '', 'current', '', '', '', '','','');
+
+        return view('admin.showCategory',compact('arr','categories'));
+    }
+
+
 
 
     public function update(Request $request, $id)

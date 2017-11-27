@@ -130,6 +130,11 @@ public function regester(Request $request)
         return 'sassss' ;
     }
 
-
+public function showCategory()
+{
+    $jobs=JobType::all();
+    return Response::json(array('Jobs' =>$jobs
+    , 'state' => 'true'));
+}
 
 }

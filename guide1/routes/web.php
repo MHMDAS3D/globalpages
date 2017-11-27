@@ -160,6 +160,7 @@ Route::get('/tender','TenderController@show');
 
 
 Route::post('/storeCategory','MarketController@storeCategory');
+Route::get('/viewSubCat/{id}','MarketController@viewSubCat');
 
 
 Auth::routes();

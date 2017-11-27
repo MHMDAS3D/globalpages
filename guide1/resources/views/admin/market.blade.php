@@ -324,11 +324,12 @@
         @foreach($cats as $cat)
 
                 <tr>
-                    <th> <img src="/upload/{{$cat->img_link}}" > </th>
+                    <th> <img height="150px" width="150px" src="/upload/{{$cat->img_link}}" > </th>
                     <th>{{$cat->name_ar}}</th>
 
 
                     <th style="text-align: center">
+                      <a href="/viewSubCat/{{$cat->id}}">  <button type="button"  class="btn btn-primary waves-effect waves-light">view</button></a>
 
                         <button type="button" data-remodal-target="remodal{{$cat->id}}" class="btn btn-primary waves-effect waves-light">edit</button>
                        @if($cat->isMain == 0)
