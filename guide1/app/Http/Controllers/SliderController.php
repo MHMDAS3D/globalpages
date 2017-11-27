@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Slider;
 use Illuminate\Support\Facades\Session;
-
+use Response ;
 class SliderController extends Controller
 {
     function show()
@@ -103,6 +103,13 @@ class SliderController extends Controller
         Session::flash('delete', 'تم حذف السلايدر بنجاح .');
 
         return redirect('slider');
+
+    }
+    public function showAPI()
+    {
+        $sliders= Slider::all();
+        return Response::json(array('Sliders' =>$sliders
+        , 'state' => 'true'));
 
     }
 }

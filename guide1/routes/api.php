@@ -31,3 +31,6 @@ Route::post('/register','JobController@regester');
 Route::get('/distance/{lat}/{long}/{cat}','MarketController@distance');
 
 Route::get('/guideCategories','CategoryController@show');
+
+
+Route::get('/sliders','SliderController@showAPI');
