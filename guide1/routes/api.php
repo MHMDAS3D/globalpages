@@ -38,3 +38,4 @@ Route::get('/sliders','SliderController@showAPI');
 Route::get('/getSubByCat/{id}','MarketController@getSubByCat');
 
 Route::get('/jopCategory','JobController@showCategory');
+Route::get('/getJobByCat/{id}','JobController@getJobByCat');

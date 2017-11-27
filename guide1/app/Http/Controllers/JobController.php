@@ -136,5 +136,11 @@ public function showCategory()
     return Response::json(array('Jobs' =>$jobs
     , 'state' => 'true'));
 }
+public function getJobByCat($id)
+{
+    $jobs=Job::where('type_id','=',$id);
+    return Response::json(array('Jobs' =>$jobs
+    , 'state' => 'true'));
+}
 
 }
