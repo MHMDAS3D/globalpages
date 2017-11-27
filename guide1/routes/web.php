@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('/efw','indexController@index');
 
 Route::get('/','indexController@showIndex');
 
