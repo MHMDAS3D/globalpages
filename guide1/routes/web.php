@@ -158,6 +158,10 @@ Route::get('/deletecat/{id}','MarketController@deletecat');
 Route::get('/addMarketCat','MarketController@addMarketCat');
 Route::get('/tender','TenderController@show');
 
+
+Route::post('/storeCategory','MarketController@storeCategory');
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Market;
 use App\MarketCategory;
@@ -14,7 +15,7 @@ class MarketController extends Controller
     {
         $arr = array('', '', '', '', 'current', '', '', '', '','','');
         $markets= Market::all();
-        $cats = MarketCategory::all();
+        $cats = Category::all();
         return view('admin.market',compact('arr','markets','cats'));
     }
     function addMarket()
@@ -67,14 +68,14 @@ class MarketController extends Controller
 
     }
 public function ismain($id){
-    $market=MarketCategory::find($id);
+    $market=Category::find($id);
 
     $market->isMain = 1;
     $market->save();
     return back();
 }
     public function isnotmain($id){
-        $market=MarketCategory::find($id);
+        $market=Category::find($id);
 
         $market->isMain = 0;
         $market->save();
@@ -99,7 +100,7 @@ public function ismain($id){
         return redirect('markets');
 
     }
-    public function deletecat(MarketCategory $id)
+    public function deletecat(Category $id)
     {
         $id->delete();
         Session::flash('delete', 'This Market was successfully deleted.');
@@ -133,6 +134,7 @@ public function ismain($id){
             $request->cover->move(public_path('upload'),$link);
             $markets->cover_img = $link ;
 
+
         }
         $markets->name = request('name_en');
         $markets->name_ar = request('name_ar');
@@ -163,6 +165,25 @@ public function ismain($id){
         $markets->save();
         Session::flash('success', 'This slider was successfully saved.');
 
+        return back();
+
+    }
+    public function addMarketCat()
+    {
+        $arr = array('', '', '', '', 'current', '', '', '', '','','');
+        return view('admin.addcat',compact('arr'));
+    }
+    public function storeCategory(Request $request)
+    {
+        $link= time() . '.' . $request->img_link->getClientOriginalExtension();
+        $category = new Category();
+
+        $category->name_ar = $request->name_ar;
+        $category->name_en = $request->name_en;
+        $category->img_link = $link;
+
+        $request->img_link->move(public_path('upload'),$link);
+        $category->save();
         return back();
 
     }
@@ -213,6 +234,12 @@ public function ismain($id){
                     return Response::json(array('Market' =>$market
                     , 'state' => 'true'));
                 }
+        }
+        public function getSubByCat($id)
+        {
+            $category = MarketCategory::where('catigory_id','=',$id)->get();
+            return Response::json(array('category' =>$category
+            , 'state' => 'true'));
         }
 
 }

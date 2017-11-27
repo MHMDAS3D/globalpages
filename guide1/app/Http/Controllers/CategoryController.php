@@ -8,7 +8,7 @@ use Response;
 class CategoryController extends Controller
 {
     public function show(){
-        $cat = MarketCategory::all();
+        $cat = Category::all();
         return Response::json(array('category' =>$cat
         , 'state' => 'true'));
     }
