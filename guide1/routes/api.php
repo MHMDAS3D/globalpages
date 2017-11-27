@@ -36,6 +36,5 @@ Route::get('/guideCategories','CategoryController@show');
 Route::get('/sliders','SliderController@showAPI');
 
 Route::get('/getSubByCat/{id}','MarketController@getSubByCat');
-showCategory
 
-Route::get('/jopCategory','JopController@showCategory');
+Route::get('/jopCategory','JobController@showCategory');
