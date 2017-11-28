@@ -2,7 +2,7 @@
 @section('content')
 
     <div class="row">
-        <h1 style="text-align: center">إضافة شريط إخباري </h1>
+        <h1 style="text-align: center">إضافة تصنيف  </h1>
         <hr>
         <div class="col-md-10">
 
@@ -13,13 +13,17 @@
                 <span>النص بالعربي : </span>
                 <br>
                 <div class="form-group">
-                    <input name="name_ar" > </input>
+                    <input name="name_ar" class="form-control" > </input>
                     <br>
                     <span>النص بالانكليزي : </span>
                     <br>
-                    <input name="name_en" > </input>
+                    <input name="name_en" class="form-control"> </input>
                     <!-- bootstrap-imageupload. -->
                     <br><br>
+                    <span>الصورة : </span>
+                    <br>
+                    <input name="img_link" type="file" class="dropify" > </input>
+
 
                 </div>
                 <div class="row">

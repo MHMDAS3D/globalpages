@@ -39,3 +39,10 @@ Route::get('/getSubByCat/{id}','MarketController@getSubByCat');
 
 Route::get('/jopCategory','JobController@showCategory');
 Route::get('/getJobByCat/{id}','JobController@getJobByCat');
+
+
+Route::get('/NewsPapers','NewsPapperController@showNewsPaper');
+Route::get('/NewsPapers/{id}','NewsPapperController@showNewsPaperById');
+
+Route::get('/ItemTypes','NewsPapperController@showItemCategory');
+Route::get('/itemByType/{id}','NewsPapperController@showItemByType');

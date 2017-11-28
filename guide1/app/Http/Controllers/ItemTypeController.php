@@ -20,9 +20,12 @@ class ItemTypeController extends Controller
         ]);
 
         $ItemType = new ItemType;
+        $link= time() . '.' . $request->img_link->getClientOriginalExtension();
         $ItemType->name_ar = request('name_ar');
         $ItemType->name_en = request('name_en');
+        $ItemType->img_link=$link;
         $ItemType->save();
+        $request->img_link->move(public_path('upload'),$link);
         Session::flash('success', 'This ticker was successfully saved.');
 
         return back();

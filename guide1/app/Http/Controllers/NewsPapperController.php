@@ -7,6 +7,7 @@ use App\NewsPapper;
 use App\NewsItem;
 use App\ItemType;
 use Session;
+use Response;
 
 class NewsPapperController extends Controller
 {
@@ -89,7 +90,8 @@ class NewsPapperController extends Controller
     {
 
         $arr = array('', '', '', '', '', '', '', '', 'current','','');
-        return view('admin.addItem',compact('arr','id'));
+        $types = ItemType::all();
+        return view('admin.addItem',compact('arr','id','types'));
     }
     public function storeitem(Request $request,$id)
     {
@@ -103,7 +105,7 @@ class NewsPapperController extends Controller
         $NewsPapper->desc_ar = request('desc_ar');
         $NewsPapper->desc_en = request('desc_en');
         $NewsPapper->news_papper_id=$id;
-        $NewsPapper->item_type_id=1;
+        $NewsPapper->item_type_id=$request->type_id;
         $NewsPapper->img_link = $link;
 
         $NewsPapper->save();
@@ -112,6 +114,35 @@ class NewsPapperController extends Controller
         Session::flash('success', 'This item was successfully saved.');
         return back();
 
+    }
+
+
+
+
+    public function showNewsPaper()
+    {
+        $newsPaper = NewsPapper::with('item')->get();
+        return Response::json(array('$newsPaper' =>$newsPaper
+        , 'state' => 'true'));
+    }
+    public function showNewsPaperById($id)
+    {
+        $newsPaper = NewsPapper::with('item')->where('id','=',$id)->get();
+        return Response::json(array('$newsPaper' =>$newsPaper
+        , 'state' => 'true'));
+    }
+
+    public function showItemCategory()
+    {
+        $newsPaper = ItemType::all();
+        return Response::json(array('type' =>$newsPaper
+        , 'state' => 'true'));
+    }
+    public function showItemByType($id)
+    {
+        $item = NewsItem::where('item_type_id','=',$id)->get();
+        return Response::json(array('item' =>$item
+        , 'state' => 'true'));
     }
 
 }

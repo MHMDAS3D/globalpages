@@ -85,6 +85,7 @@
     <table id="example" class="table table-striped table-bordered display" style="width:100%">
         <thead>
         <tr>
+            <th>الصورة   </th>
             <th>الاسم  </th>
 
 
@@ -96,7 +97,7 @@
         @foreach($Types as $type)
 
                 <tr>
-
+                    <th> <img src="upload/{{$type->img_link}}" width="150px " height="150px"></th>
                     <th>{{$type->name_ar}}</th>
 
 
