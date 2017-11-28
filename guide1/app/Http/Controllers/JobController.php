@@ -57,10 +57,7 @@ class JobController extends Controller
     public function addcats(Request $request)
     {
         $arr = array('', '', '', '', '', '', '', 'current', '','','');
-
-
         return view('admin.addCatJob',compact('arr'));
-
     }
     public function storecat(Request $request)
     {
@@ -73,9 +70,7 @@ class JobController extends Controller
         $job->name_en = request('title_en');
         $job->save();
         Session::flash('success', 'This job type was successfully saved.');
-
         return back();
-
     }
 
 
@@ -118,7 +113,6 @@ public function isAuth(Request $request)
    else{
        return 0 ;
    }
-
 }
 public function regester(Request $request)
 {

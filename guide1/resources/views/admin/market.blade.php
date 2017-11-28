@@ -331,7 +331,7 @@
                     <th style="text-align: center">
                       <a href="/viewSubCat/{{$cat->id}}">  <button type="button"  class="btn btn-primary waves-effect waves-light">view</button></a>
 
-                        <button type="button" data-remodal-target="remodal{{$cat->id}}" class="btn btn-primary waves-effect waves-light">edit</button>
+                        <button type="button" data-remodal-target="remodal{{$cat->id}}33" class="btn btn-primary waves-effect waves-light">edit</button>
                        @if($cat->isMain == 0)
                         <a href="/isMain/{{$cat->id}}">  <button class="btn btn-success">إضافة إلى الرئيسية </button></a>
                         @else
@@ -344,7 +344,30 @@
 
 
 
+                <div class="remodal" data-remodal-id="remodal{{$cat->id}}33" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
+                    <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
+                    <div class="remodal-content">
+                        <form action="/updateCat/{{$cat->id}}" method="post" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                        <h2 id="modal1Title">الصورة </h2>
+                        <img src="upload/{{$cat->img_link}}" width="150px" height="150px">
+                        <br> <input type="file" name="img_link" >
 
+                        <span style="font-size:30px "  >الاسم بالعربي : </span>
+                        <br>
+
+                        <input type="text" value="{{$cat->name_ar}}" class="form-control" name="name_ar" >
+                        <span style="font-size:30px "  >الاسم بالانكليزي : </span>
+                        <br>
+                        <input type="text" value="{{$cat->name_en}}" class="form-control" name="name_en" >
+
+
+                        <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+                            <button class="remodal-confirm" type="submit" name="button">+ إضافة </button>
+                        </form>
+
+                    </div>
+                </div>
 
 
 
@@ -352,5 +375,7 @@
         </tbody>
     </table>
     <a href="/addMarketCat"> <button class="btn btn-primary">إضافة + </button></a>
+
+
 
 @stop

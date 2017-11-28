@@ -32,17 +32,21 @@
 
                 <th style="text-align: center">
                     <button type="button" data-remodal-target="remodal{{$category->id}}" class="btn btn-primary waves-effect waves-light">edit</button>
-                    <a href="/deletefaq/{{$category->id}}">  <button class="btn btn-danger">delete</button></a>
+                    <a href="/deleteSubCat/{{$category->id}}">  <button class="btn btn-danger">delete</button></a>
                 </th>
             </tr>
             <div class="remodal" data-remodal-id="remodal{{$category->id}}" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
                 <button data-remodal-action="close" class="remodal-close" aria-label="Close"></button>
                 <div class="remodal-content">
                     <h2 id="modal1Title">{{$category->id}}</h2>
-                    <form action="/editeFAQs/{{$category->id}}" method="post" enctype="multipart/form-data">
+                    <form action="/updateSubCat/{{$category->id}}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <br>
-                        <span>السؤال  بالعربي  : </span>
+                        <span>النص   بالعربي  : </span>
+                        <input type="text" class="form-control" name="name_ar" value="{{$category->name_ar}}">
+                        <br>
+                        <span>النص   بالانكليزي  : </span>
+                        <input type="text" class="form-control" name="name_en" value="{{$category->name_en}}">
                         <br>
 
                         <div class="row">
@@ -58,7 +62,7 @@
         @endforeach
         </tbody>
     </table>
-    <a href="/addSubCat"> <button class="btn btn-primary">إضافة + </button></a>
+    <a href="/addSubCat/{{$id}}"> <button class="btn btn-primary">إضافة + </button></a>
 
 
 @stop

@@ -161,7 +161,13 @@ Route::get('/tender','TenderController@show');
 
 Route::post('/storeCategory','MarketController@storeCategory');
 Route::get('/viewSubCat/{id}','MarketController@viewSubCat');
+Route::get('/addSubCat/{id}','MarketController@addSubCat');
+Route::post('/storeSubCategory/{id}','MarketController@storeSubCategory');
 
+Route::get('/deleteSubCat/{id}','MarketController@deleteSubCat');
+
+Route::post('/updateSubCat/{id}','MarketController@updateSubCat');
+Route::post('/updateCat/{id}','MarketController@updateCat');
 
 Auth::routes();
 

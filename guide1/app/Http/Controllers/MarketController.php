@@ -112,10 +112,16 @@ public function ismain($id){
         $categories = MarketCategory::where('catigory_id','=',$id)->get();
         $arr = array('', '', '', '', 'current', '', '', '', '','','');
 
-        return view('admin.showCategory',compact('arr','categories'));
+        return view('admin.showCategory',compact('arr','categories','id'));
     }
 
 
+    public function addSubCat($id)
+    {
+        $arr = array('', '', '', '', 'current', '', '', '', '','','');
+
+        return view('admin.addSubCat',compact('arr','id'));
+    }
 
 
     public function update(Request $request, $id)
@@ -182,6 +188,55 @@ public function ismain($id){
         $arr = array('', '', '', '', 'current', '', '', '', '','','');
         return view('admin.addcat',compact('arr'));
     }
+    public function storeSubCategory(Request $request,$id)
+    {
+        $category = new MarketCategory();
+
+        $category->name_ar = $request->name_ar;
+        $category->name_en = $request->name_en;
+        $category->catigory_id = $id;
+
+        $category->save();
+        return back();
+
+    }
+public function updateSubCat(Request $request,$id)
+{
+    $subCat = MarketCategory::find($id);
+    $subCat->name_ar = $request->name_ar;
+    $subCat->name_en = $request->name_en;
+    $subCat->save();
+    return back();
+}
+    public function updateCat(Request $request,$id)
+    {
+
+        $subCat = Category::find($id);
+        if (! empty($request->img_link)) {
+
+            $link= time() . '.' . request('img_link')->getClientOriginalExtension();
+            // $slide->update(array('title' =>request('title'),
+            //                       'desc' =>request('desc') ,
+            //                       'img_link' => $link ));
+            $request->img_link->move(public_path('upload'),$link);
+            $subCat->img_link = $link ;
+
+        }
+        $subCat->name_ar = $request->name_ar;
+        $subCat->name_en = $request->name_en;
+        $subCat->save();
+        return back();
+    }
+
+    public function deleteSubCat(MarketCategory $id)
+{
+    $id->delete();
+    Session::flash('delete', 'This category was successfully deleted.');
+    return redirect('markets');
+
+}
+
+
     public function storeCategory(Request $request)
     {
         $link= time() . '.' . $request->img_link->getClientOriginalExtension();
